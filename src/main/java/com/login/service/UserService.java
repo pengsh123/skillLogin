@@ -17,6 +17,7 @@ public class UserService {
 
 	public String checkUser(String id, String pwd) {
 		User user = mapper.getUser(id);
+		pwd = DigestUtils.md5DigestAsHex(pwd.getBytes());
 		if (user.getPwd().equals(pwd)) {
 			String md5Str = id.substring(0, 4) + MD5_STRING + id.substring(4);
 			String md5DigestAsHex = DigestUtils.md5DigestAsHex(md5Str.getBytes());
@@ -27,11 +28,17 @@ public class UserService {
 
 	public boolean addUser(String id, String userName, String pwd, String tel) {
 		try {
+			pwd = DigestUtils.md5DigestAsHex(pwd.getBytes());
 			mapper.addUser(id, userName, pwd, tel);
 		} catch (Exception e) {
 			return false;
 		}
 		return true;
+	}
+
+	public boolean checkToken(String token, String id) {
+		String str = id.substring(0, 4) + MD5_STRING + id.substring(4);
+		return str.equals(token);
 	}
 
 }

@@ -25,12 +25,19 @@ public class UserService {
 		}
 		return "";
 	}
+	
+	public boolean checkId(String Id) {
+		User user = mapper.getUser(Id);
+		return user!=null;
+		
+	}
 
 	public boolean addUser(String id, String userName, String pwd, String tel) {
 		try {
 			pwd = DigestUtils.md5DigestAsHex(pwd.getBytes());
 			mapper.addUser(id, userName, pwd, tel);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;

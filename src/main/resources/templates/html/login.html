@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/login">
+		账号:<input type="text" />
+		<hr />
+		密码:<input type="password" />
+		<hr />
+		<input type="submit" value="登录" /> 
+		<input type="button" onclick="register()"
+			value="注册" />
+	</form>
+</body>
+<script>
+	function register(){
+		this.window.location = "/register";
+	}
+</script>
+</html>

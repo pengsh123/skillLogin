@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/register">
+		账号:<input name="id" onblur="checkId()" type="text" /> <span id="idtxt"></span>> <br />
+		密码:<input name="pwd" type="password" /> <br /> 姓名:<input
+			name="userName" type="text" /> <br /> 电话:<input name="tel"
+			type="text" /> <br /> <input type="submit" value="注册" />
+	</form>
+</body>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script>
+	function checkId(){
+		var id = $("#id")[0].value;
+		$.post("/checkId",{
+			"id":id
+		},{
+			function(data,status){
+				if(data==true){
+					$("#idtxt").value = id+"可以使用!";
+				}else{
+					$("#idtxt").value = id+"已存在!";
+				}
+			}
+		})
+	}
+</script>
+</html>

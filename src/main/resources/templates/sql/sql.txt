@@ -1,0 +1,8 @@
+create table user(
+    id_ varchar(20),
+    pwd_ varchar(32),
+    userName_ varchar(20),
+    tel_ varchar(20),
+    money_ float(20,2),
+    primary key(id_)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

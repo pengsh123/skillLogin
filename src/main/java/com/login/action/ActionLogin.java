@@ -25,6 +25,16 @@ public class ActionLogin {
 		token = userService.checkUser(id, pwd);
 		return token;
 	}
+	
+	/**
+	 * 登录验证
+	 */
+	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean checkId(String id) {
+		return userService.checkId(id);
+	}
+	
 
 	/**
 	 * 登录界面
@@ -38,9 +48,15 @@ public class ActionLogin {
 	 * 注册
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(String id, String userName, String pwd, String tel) {
+	@ResponseBody
+	public boolean register(String id, String userName, String pwd, String tel) {
 		boolean addUser = userService.addUser(id, userName, pwd, tel);
-		return null;
+		return addUser;
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "register";
 	}
 
 }
